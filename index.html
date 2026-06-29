@@ -21,180 +21,7 @@
     }
   }
 </script>
-<style>
-  :root {
-    --bg: #0B0F1A;
-    --surface: #131929;
-    --surface2: #1C2540;
-    --border: #243058;
-    --text: #E8EDF5;
-    --muted: #7A8BAA;
-    --cyan: #00C8FF;
-    --cyan-dim: rgba(0,200,255,0.12);
-    --green: #00E5A0;
-    --nav-bg: rgba(11,15,26,0.85);
-    --toggle-track: #1C2540;
-  }
-  [data-theme="light"] {
-    --bg: #F5F7FA;
-    --surface: #FFFFFF;
-    --surface2: #EDF0F5;
-    --border: #D4DAE8;
-    --text: #0D1117;
-    --muted: #5C6B85;
-    --cyan: #007BB5;
-    --cyan-dim: rgba(0,123,181,0.1);
-    --green: #00875A;
-    --nav-bg: rgba(245,247,250,0.88);
-    --toggle-track: #D4DAE8;
-  }
-
-  body { background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; overflow-x: hidden; }
-
-  /* Nav */
-  nav { background: var(--nav-bg); border-bottom: 1px solid var(--border); }
-  .nav-logo { color: var(--text); }
-  .nav-logo span { color: var(--cyan); }
-  .nav-link { color: var(--muted); transition: color 0.2s; }
-  .nav-link:hover { color: var(--cyan); }
-  .nav-icon-btn {
-    display: flex; align-items: center; justify-content: center;
-    width: 34px; height: 34px; border-radius: 6px;
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--muted); text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, transform 0.15s;
-  }
-  .nav-icon-btn:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-1px); }
-  .nav-icon-btn svg { width: 16px; height: 16px; fill: currentColor; }
-  .nav-cta {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem; font-weight: 600;
-    color: var(--bg); background: var(--cyan);
-    padding: 0.45rem 1.2rem; border-radius: 4px;
-    text-decoration: none; transition: opacity 0.2s;
-  }
-  .nav-cta:hover { opacity: 0.85; }
-
-  /* Theme toggle */
-  .theme-toggle {
-    position: relative; width: 44px; height: 24px;
-    background: var(--toggle-track); border: 1px solid var(--border);
-    border-radius: 12px; cursor: pointer; transition: background 0.3s;
-  }
-  .theme-toggle::after {
-    content: ''; position: absolute; top: 3px; left: 3px;
-    width: 16px; height: 16px; border-radius: 50%;
-    background: var(--cyan);
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  }
-  [data-theme="light"] .theme-toggle::after { transform: translateX(20px); }
-  .toggle-icons {
-    position: absolute; inset: 0; display: flex; align-items: center;
-    justify-content: space-between; padding: 0 5px;
-    pointer-events: none; font-size: 9px;
-  }
-
-  /* Hero */
-  #hero { background: var(--bg); }
-  .hero-grid-bg {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(0,200,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
-  }
-  .hero-eyebrow { color: var(--cyan); }
-  .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--cyan); }
-  .firstname { color: var(--text); }
-  .lastname { color: var(--cyan); display: block; }
-  .hero-role { color: var(--muted); }
-  .stat-num { color: var(--text); }
-  .stat-num span { color: var(--cyan); }
-  .stat-label { color: var(--muted); }
-
-  /* Terminal */
-  .hero-terminal { background: var(--surface); border: 1px solid var(--border); }
-  .term-line { color: var(--muted); }
-  .term-line .prompt { color: var(--green); }
-  .term-line .cmd { color: var(--text); }
-  .term-line .out { color: var(--cyan); }
-  .term-line .out-muted { color: var(--muted); }
-  #typewriter { color: var(--cyan); }
-  .cursor {
-    display: inline-block; width: 8px; height: 1em;
-    background: var(--cyan); margin-left: 2px;
-    animation: blink 1s step-end infinite; vertical-align: text-bottom;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* Photo */
-  .hero-photo { border: 2px solid var(--border); }
-  .hero-photo-ring { position: absolute; inset: -8px; border-radius: 50%; border: 1px solid var(--cyan); opacity: 0.35; }
-  .hero-photo-glow { position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, var(--cyan-dim) 0%, transparent 70%); }
-
-  /* Experience */
-  #experience { background: var(--surface); }
-  .section-label { color: var(--cyan); }
-  .section-label::after { content: ''; display: inline-block; width: 60px; height: 1px; background: var(--border); margin-left: 0.6rem; vertical-align: middle; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border); }
-  .job::before {
-    content: ''; position: absolute; left: -4px; top: 8px;
-    width: 9px; height: 9px; border-radius: 50%;
-    background: var(--bg); border: 2px solid var(--cyan);
-  }
-  .job { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .job.visible { opacity: 1; transform: translateY(0); }
-  .job-company { color: var(--text); }
-  .job-title { color: var(--cyan); }
-  .job-meta { color: var(--muted); }
-  .job-achievements li { color: var(--muted); border-bottom: 1px solid var(--border); }
-  .job-achievements li:last-child { border-bottom: none; }
-  .job-achievements li::before { content: '→'; position: absolute; left: 0; color: var(--cyan); font-size: 0.75rem; top: 0.38rem; }
-
-  /* Skills */
-  #skills { background: var(--bg); }
-  .skill-card {
-    background: var(--surface); border: 1px solid var(--border);
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s;
-  }
-  .skill-card.visible { opacity: 1; transform: translateY(0); }
-  .skill-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
-  .skill-card-title { color: var(--cyan); }
-  .pill { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
-  .cert-item { color: var(--muted); border-bottom: 1px solid var(--border); }
-  .cert-item:last-child { border-bottom: none; }
-  .cert-icon { color: #FF6B35; }
-
-  /* Contact */
-  #contact { background: var(--surface); }
-  .contact-links li { border-bottom: 1px solid var(--border); }
-  .contact-links li:last-child { border-bottom: none; }
-  .contact-links a { color: var(--text); transition: color 0.2s; }
-  .contact-links a:hover { color: var(--cyan); }
-  .contact-icon { background: var(--surface2); color: var(--cyan); }
-  .contact-label { color: var(--muted); }
-  .avail-card { background: var(--surface2); border: 1px solid var(--border); }
-  .avail-dot { background: var(--green); animation: pulse-dot 2s ease infinite; }
-  .avail-status-text { color: var(--green); }
-  .avail-desc { color: var(--muted); }
-  @keyframes pulse-dot {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,160,0.4); }
-    50% { box-shadow: 0 0 0 6px rgba(0,229,160,0); }
-  }
-  .btn-primary {
-    display: inline-block; font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600; font-size: 0.9rem;
-    color: var(--bg); background: var(--cyan);
-    padding: 0.7rem 1.6rem; border-radius: 5px;
-    text-decoration: none; transition: opacity 0.2s, transform 0.15s;
-  }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  /* Footer */
-  footer { border-top: 1px solid var(--border); color: var(--muted); }
-  footer a { color: var(--muted); }
-  footer a:hover { color: var(--cyan); }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="font-sans text-base leading-relaxed">
 
@@ -203,6 +30,7 @@
   <a class="nav-logo font-grotesk font-bold text-lg tracking-tight no-underline" href="#hero">meekael<span>.</span></a>
   <ul class="hidden md:flex gap-8 list-none">
     <li><a class="nav-link font-grotesk text-sm font-medium uppercase tracking-widest no-underline" href="#experience">Experience</a></li>
+    <li><a class="nav-link font-grotesk text-sm font-medium uppercase tracking-widest no-underline" href="#projects">Projects</a></li>
     <li><a class="nav-link font-grotesk text-sm font-medium uppercase tracking-widest no-underline" href="#skills">Skills</a></li>
     <li><a class="nav-link font-grotesk text-sm font-medium uppercase tracking-widest no-underline" href="#contact">Contact</a></li>
   </ul>
@@ -225,7 +53,7 @@
   <div class="hero-grid-bg"></div>
   <div class="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_280px] items-center gap-8 w-full">
     <div>
-      <div class="hero-eyebrow font-mono text-xs tracking-widest mb-5 flex items-center gap-2">BUILDER · AUTOMATOR · PROBLEM SOLVER</div>
+      <div class="hero-eyebrow font-mono text-xs tracking-widest mb-5 flex items-center gap-2">FOUNDER · BUILDER · AUTOMATOR</div>
       <h1 class="font-grotesk font-bold leading-none tracking-tight mb-3" style="font-size:clamp(3rem,8vw,6.5rem)">
         <span class="firstname">Meekael</span>
         <span class="lastname">Islam</span>
@@ -348,6 +176,81 @@
   </div>
 </section>
 
+<!-- PROJECTS -->
+<section id="projects" class="py-24 px-8 md:px-32">
+  <div class="section-label font-mono text-xs uppercase tracking-widest mb-3">What I'm Building</div>
+  <h2 class="font-grotesk font-bold tracking-tight leading-tight mb-2" style="font-size:clamp(1.8rem,4vw,2.6rem)">Projects</h2>
+  <p class="mb-14 text-sm" style="color:var(--muted);max-width:480px">Shipping real products outside the day job — AI automation, SaaS tooling, and systems built to last.</p>
+
+  <div class="grid gap-8" style="max-width:900px;grid-template-columns:repeat(auto-fill,minmax(380px,1fr))">
+
+    <!-- Sentinel Lettings OS -->
+    <div class="skill-card rounded-lg overflow-hidden">
+      <div class="px-6 py-5" style="background:var(--surface2);border-bottom:1px solid var(--border)">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="font-mono text-xs px-2 py-0.5 rounded" style="background:rgba(0,229,160,0.12);color:var(--green);border:1px solid rgba(0,229,160,0.25)">Live client</span>
+          <span class="font-mono text-xs px-2 py-0.5 rounded" style="background:var(--surface);border:1px solid var(--border);color:var(--muted)">2026</span>
+        </div>
+        <div class="font-grotesk font-bold text-lg" style="color:var(--text)">Sentinel Lettings OS</div>
+        <div class="font-mono text-xs mt-1" style="color:var(--muted)">under Swyzai · Tu Nguyen Management Ltd</div>
+      </div>
+      <div class="p-6">
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Full-stack internal operations platform for a Birmingham lettings agency — replacing WhatsApp-based scheduling and manual invoice tracking with a branded, automated system.</p>
+        <div class="grid gap-2 mb-5" style="grid-template-columns:1fr 1fr">
+          <div class="rounded-md px-3 py-2.5" style="background:var(--surface2);border:1px solid var(--border)">
+            <div class="font-mono text-xs mb-1" style="color:var(--cyan)">Booking scheduler</div>
+            <div class="text-xs leading-relaxed" style="color:var(--muted)">Google Calendar OAuth per agent, 3-step tenant form</div>
+          </div>
+          <div class="rounded-md px-3 py-2.5" style="background:var(--surface2);border:1px solid var(--border)">
+            <div class="font-mono text-xs mb-1" style="color:var(--cyan)">Revolut integration</div>
+            <div class="text-xs leading-relaxed" style="color:var(--muted)">Webhook listener, HMAC verification, fuzzy invoice matching</div>
+          </div>
+          <div class="rounded-md px-3 py-2.5" style="background:var(--surface2);border:1px solid var(--border)">
+            <div class="font-mono text-xs mb-1" style="color:var(--cyan)">Trello sync</div>
+            <div class="text-xs leading-relaxed" style="color:var(--muted)">Auto card creation and agent assignment by job type</div>
+          </div>
+          <div class="rounded-md px-3 py-2.5" style="background:var(--surface2);border:1px solid var(--border)">
+            <div class="font-mono text-xs mb-1" style="color:var(--cyan)">Multi-tenancy</div>
+            <div class="text-xs leading-relaxed" style="color:var(--muted)">Agency → Agent → Property → Job data model</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 pt-4" style="border-top:1px solid var(--border)">
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">Next.js</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">TypeScript</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">Supabase</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">Prisma</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">Vercel</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">Resend</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Swyzai -->
+    <div class="skill-card rounded-lg overflow-hidden">
+      <div class="px-6 py-5" style="background:var(--surface2);border-bottom:1px solid var(--border)">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="font-mono text-xs px-2 py-0.5 rounded" style="background:rgba(0,200,255,0.1);color:var(--cyan);border:1px solid rgba(0,200,255,0.2)">In progress</span>
+        </div>
+        <div class="font-grotesk font-bold text-lg" style="color:var(--text)">Swyzai</div>
+        <div class="font-mono text-xs mt-1" style="color:var(--muted)">AI automation for UK lettings agencies</div>
+      </div>
+      <div class="p-6">
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Building an AI-powered workflow automation business targeting the UK property sector. Setup fee + monthly retainer model, SaaS long-term. First client already in production.</p>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">AI automation</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">Lettings sector</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">UK market</span>
+          <span class="pill font-mono text-xs px-2.5 py-1 rounded">SaaS</span>
+        </div>
+        <div class="flex items-center gap-3 pt-4" style="border-top:1px solid var(--border)">
+          <a href="https://swyz.ai" target="_blank" rel="noopener" class="font-mono text-xs no-underline" style="color:var(--cyan)">swyz.ai →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- SKILLS -->
 <section id="skills" class="py-24 px-8 md:px-32">
   <div class="section-label font-mono text-xs uppercase tracking-widest mb-3">Capabilities</div>
@@ -378,6 +281,10 @@
         <span class="pill font-mono text-xs px-2.5 py-1 rounded">Arrows</span>
         <span class="pill font-mono text-xs px-2.5 py-1 rounded">Vercel</span>
         <span class="pill font-mono text-xs px-2.5 py-1 rounded">Supabase</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">Next.js</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">Prisma</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">Trello API</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">Resend</span>
       </div>
     </div>
 
@@ -393,6 +300,9 @@
         <span class="pill font-mono text-xs px-2.5 py-1 rounded">VoIP</span>
         <span class="pill font-mono text-xs px-2.5 py-1 rounded">CSV / Data Migrations</span>
         <span class="pill font-mono text-xs px-2.5 py-1 rounded">SaaS Integrations</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">TypeScript</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">OAuth 2.0</span>
+        <span class="pill font-mono text-xs px-2.5 py-1 rounded">HMAC verification</span>
       </div>
     </div>
 
