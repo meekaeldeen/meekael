@@ -20,11 +20,11 @@ toggleBtn.addEventListener('click', () => {
 
 // ── TYPEWRITER ──
 const lines = [
-  'API integrations & webhooks',
-  'SaaS migrations & onboarding',
-  'Technical support & escalations',
-  'AI tooling & automation',
-  'Cross-functional engineering comms',
+  'Full-stack product development',
+  'AI workflow automation',
+  'API integrations & system design',
+  'SaaS platform architecture',
+  'From idea to production',
 ];
 let lineIndex = 0, charIndex = 0, deleting = false;
 const typeEl = document.getElementById('typewriter');
@@ -62,3 +62,19 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.job, .skill-card').forEach(el => observer.observe(el));
+
+// ── ACTIVE NAV ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => navObserver.observe(s));
